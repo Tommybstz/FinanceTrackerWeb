@@ -9,10 +9,15 @@ builder.Services.AddCors(o=> o.AddDefaultPolicy(p=> p.AllowAnyOrigin().AllowAnyM
 builder.Services.AddEndpointsApiExplorer();//add support for API documentation generation
 builder.Services.AddSwaggerGen();
 
+var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
+
+builder.WebHost.UseUrls($"http://0.0.0.0:{port}");
+
 var app = builder.Build();//build the application
 app.UseCors();//enable CORS for the application
 app.UseSwagger();//
 app.UseSwaggerUI();//enable the Swagger UI for testing the API endpoints and viewing documentation. this will be available at /swagger in the browser
+
 
 var manager= app.Services.GetRequiredService<TransactionManager>();//grabs teh singleton instance of TransactionManager from the dependency injection container so it can be used in the endpoints to manage transactions
 var storage= app.Services.GetRequiredService<FileStorage>();
