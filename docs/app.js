@@ -1,4 +1,4 @@
-const API = 'https://financetrackerweb.onrender.com';
+const API = 'https://financetrackerweb.onrender.com/api/transactions';
 
 async function fetchTransactions() {
     const response = await fetch(API);
