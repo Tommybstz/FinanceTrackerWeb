@@ -9,10 +9,6 @@ builder.Services.AddCors(o=> o.AddDefaultPolicy(p=> p.AllowAnyOrigin().AllowAnyM
 builder.Services.AddEndpointsApiExplorer();//add support for API documentation generation
 builder.Services.AddSwaggerGen();
 
-var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
-
-builder.WebHost.UseUrls($"http://0.0.0.0:{port}");
-
 var app = builder.Build();//build the application
 app.UseCors();//enable CORS for the application
 app.UseSwagger();//
